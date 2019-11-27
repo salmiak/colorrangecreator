@@ -28,7 +28,7 @@
     </ul>
 
     <div class="code">
-      <div v-for="(color, index) in colorRange" :key="index">@color-s{{colorRange.length-1-index}}00: {{color}};</div>
+      <div v-for="(color, index) in colorRange" :key="index">@color-s{{colorRange.length-index}}00: {{color}};</div>
     </div>
   </div>
 </template>
