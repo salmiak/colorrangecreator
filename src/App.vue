@@ -42,9 +42,9 @@ export default {
   data() {
     return {
       color1: '#00303C',
-      color2: '#f1f4ee',
+      color2: '#FFFDF6',
       mode: 'lab',
-      gamma: '',
+      gamma: '0.75',
       steps: 10,
       contrastThreshold: 3
     }
