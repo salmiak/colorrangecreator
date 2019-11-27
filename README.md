@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## ToDo
+- [ ] Set and get settings to cookies so one can save settings one like.
+- [ ] Add custom range functions for each channel.
