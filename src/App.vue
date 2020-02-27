@@ -22,7 +22,7 @@
     <ul>
       <li v-for="c in colorRange" :key="c" :style="{'background-color': c}">
         <ul>
-          <li v-for="f in colorRange" :key="'f-'+f" :class="{validContrast: validContrast(c,f)}" :style="{'background-color': f, color: c, width: (90/steps - 4) + 'vmin', height: (90/steps - 4) + 'vmin', 'line-height': (90/steps - 4) + 'vmin'}">{{ contrast(c,f) }}</li>
+          <li v-for="f in colorRange" :key="'f-'+f" :class="{validContrast: validContrast(c,f)}" :style="{'background-color': f, color: c, width: (90/steps - 2) + 'vmin', height: (90/steps - 2) + 'vmin', 'line-height': (90/steps - 2) + 'vmin'}">{{ contrast(c,f) }}</li>
         </ul>
       </li>
     </ul>
@@ -145,10 +145,10 @@ ul {
   display: block;
 }
 #app > ul li li {
-  margin: 2vmin;
+  margin: 1vmin;
   display: inline-block;
   border-radius: 999999px;
-  font: 300 1rem sans-serif;
+  font: 400 1rem sans-serif;
 }
 #app > ul:hover li li.validContrast {
   opacity: 0;
