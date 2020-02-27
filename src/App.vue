@@ -28,7 +28,8 @@
     </ul>
 
     <div class="code">
-      <div v-for="(color, index) in colorRange" :key="index">@color-s{{colorRange.length-index}}00: {{color}};</div>
+      <div><div v-for="(color, index) in colorRange" :key="index">@color-s{{colorRange.length-index}}00: {{color}};</div></div>
+      <textarea v-model="dataAsJSON" :class="{'is-valid': validJson}"></textarea>
     </div>
   </div>
 </template>
@@ -42,11 +43,12 @@ export default {
   data() {
     return {
       color1: '#00303C',
-      color2: '#FFFDF6',
+      color2: '#F7FFF7',
       mode: 'lab',
       gamma: '0.75',
       steps: 10,
-      contrastThreshold: 3
+      contrastThreshold: 3,
+      validJson: true
     }
   },
   components: {
@@ -76,6 +78,35 @@ export default {
         cObj.correctLightness()
       }
       return cObj.colors(this.steps)
+    },
+    dataAsJSON: {
+      get: function() {
+        return JSON.stringify({
+          color1: this.color1,
+          color2: this.color2,
+          mode: this.mode,
+          gamma: this.gamma,
+          steps: this.steps,
+          contrastThreshold: this.contrastThreshold
+        }, undefined, 2)
+      },
+      set(newValue) {
+        var newValueParsed = undefined
+        try {
+          newValueParsed = JSON.parse(newValue)
+        } catch(e) {
+          this.validJson = false
+        }
+        if (newValueParsed) {
+          this.color1 =  newValueParsed.color1
+          this.color2 =  newValueParsed.color2
+          this.mode =  newValueParsed.mode
+          this.gamma =  newValueParsed.gamma
+          this.steps =  newValueParsed.steps
+          this.contrastThreshold =  newValueParsed.contrastThreshold
+          this.validJson = true
+        }
+      }
     }
   }
 }
@@ -138,7 +169,24 @@ ul {
   text-align: left;
   background: #fff;
   color: #222;
-  padding: 10px;
+  padding: 0px;
   margin-top: 80px;
+  display: flex;
+  align-content: stretch;
+  justify-content: space-between;
+}
+.code > * {
+  width: 50%;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  border: 0;
+  padding: .75rem;
+}
+.code textarea {
+  background: pink;
+}
+.code textarea.is-valid {
+  background:  #F2F2F2;
 }
 </style>
